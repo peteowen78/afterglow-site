@@ -1,0 +1,209 @@
+/* Afterglow one-page site. Colours and type taken from the A5 flyer. */
+:root {
+  --navy: #011c2d;
+  --navy-2: #06263b;
+  --lilac: #b98fd8;
+  --pink: #f9cbe8;
+  --white: #ffffff;
+  --text: rgba(255, 255, 255, .86);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--text);
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--lilac); }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+
+/* ---------- Top menu ---------- */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 20px;
+  background: rgba(1, 28, 45, .72);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.nav-logo img { width: 125px; margin: -14px 0 -16px -10px; }
+.nav nav { display: flex; align-items: center; gap: 22px; }
+.nav nav a {
+  color: var(--white); text-decoration: none;
+  font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav nav a:hover { color: var(--pink); }
+.nav nav .nav-cta {
+  border: 1.5px solid var(--pink); color: var(--pink);
+  padding: 7px 16px; border-radius: 999px;
+}
+.nav nav .nav-cta:hover { background: var(--pink); color: var(--navy); }
+
+/* ---------- Hero (the flyer) ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 92px 24px 28px;
+  text-align: center;
+  color: var(--white);
+  background: url("images/hero.jpg") center / cover no-repeat, var(--navy);
+  overflow: hidden;
+}
+.hero > * { position: relative; z-index: 2; }
+.hero .hero-video, .hero .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero .hero-video { z-index: 0; object-fit: cover; }
+.hero .hero-video-b { opacity: 0; transition: opacity 1s linear; }
+.hero .hero-shade {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(1,28,45,.35) 0%, rgba(1,28,45,.1) 30%, rgba(1,28,45,.55) 68%, var(--navy) 100%);
+}
+.strap, .corners, .eyebrow {
+  font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+}
+.strap { margin: 0; font-size: clamp(11px, 1.6vw, 16px); }
+.strap span, .footer span { margin: 0 .6em; opacity: .8; }
+.hero-mid { width: 100%; max-width: 760px; margin-top: 8vh; }
+.hero h1 { margin: 0; }
+.hero h1 img { width: min(100%, 720px); margin: 0 auto 10px; }
+.when {
+  margin: 0 0 26px;
+  font-size: clamp(17px, 2.6vw, 25px); font-weight: 500; line-height: 1.35;
+  text-shadow: 0 2px 18px rgba(1, 28, 45, .7);
+}
+.corners {
+  width: 100%; max-width: 1100px;
+  display: flex; justify-content: space-between;
+  font-size: clamp(12px, 1.4vw, 15px);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 32px; border-radius: 999px;
+  background: var(--pink); color: var(--navy);
+  font-weight: 700; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  box-shadow: 0 0 22px rgba(249, 160, 220, .55), 0 0 60px rgba(214, 120, 230, .35);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(249, 160, 220, .8), 0 0 80px rgba(214, 120, 230, .5); }
+.btn-big { padding: 18px 40px; font-size: 16px; margin: 10px 0 22px; }
+.btn-ghost {
+  background: transparent; color: var(--pink);
+  border: 1.5px solid var(--pink); box-shadow: none;
+}
+.btn-ghost:hover { background: var(--pink); color: var(--navy); box-shadow: none; }
+
+/* ---------- Sections ---------- */
+.band { padding: clamp(64px, 10vw, 120px) 24px; }
+.band-glow {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(150, 90, 210, .28), rgba(1, 28, 45, 0) 70%),
+    var(--navy-2);
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+.narrow { max-width: 760px; }
+.center { text-align: center; }
+.eyebrow { margin: 0 0 10px; color: var(--lilac); font-weight: 700; font-size: 14px; letter-spacing: .12em; }
+h2 {
+  margin: 0 0 22px; color: var(--white);
+  font-size: clamp(30px, 5vw, 48px); font-weight: 600; line-height: 1.15;
+}
+.lead { font-size: clamp(18px, 2.3vw, 22px); line-height: 1.5; color: var(--white); margin: 0 0 20px; }
+.small { font-size: 14px; opacity: .75; }
+.mission {
+  margin: 34px 0 0; padding-left: 20px; border-left: 3px solid var(--pink);
+  color: var(--pink); font-size: clamp(19px, 2.4vw, 23px); font-weight: 500; line-height: 1.4;
+  text-shadow: 0 0 24px rgba(249, 160, 220, .45);
+}
+
+.pillars, .tips, .playlists { list-style: none; padding: 0; margin: 0; }
+.pillars {
+  margin-top: 48px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.pillars li {
+  padding: 20px 18px; border-radius: 14px;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(185, 143, 216, .3);
+  font-size: 14.5px; line-height: 1.5;
+}
+.pillars strong, .tips strong {
+  display: block; margin-bottom: 4px; color: var(--white);
+  font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+}
+
+/* ---------- Getting there ---------- */
+.two-col { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
+address { font-style: normal; font-size: 19px; line-height: 1.55; color: var(--white); margin-bottom: 28px; }
+address strong { color: var(--pink); }
+.tips { margin-bottom: 30px; }
+.tips li { padding: 14px 0; border-top: 1px solid rgba(185, 143, 216, .28); font-size: 15.5px; }
+.map {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(185, 143, 216, .4);
+  box-shadow: 0 0 60px rgba(150, 90, 210, .3);
+  background: var(--navy-2);
+}
+.map iframe { display: block; width: 100%; height: 460px; border: 0; }
+
+/* ---------- Playlists ---------- */
+.playlists { margin-top: 36px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.playlist {
+  width: 240px; padding: 28px 20px; border-radius: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: rgba(1, 28, 45, .6); border: 1px solid rgba(185, 143, 216, .4);
+  color: var(--white); text-decoration: none;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.playlist:not(.is-soon):hover { transform: translateY(-3px); border-color: var(--pink); }
+.playlist.is-soon { cursor: default; }
+.disc {
+  width: 84px; height: 84px; margin-bottom: 12px; border-radius: 50%;
+  background:
+    radial-gradient(circle, var(--navy) 0 9%, var(--pink) 10% 30%, transparent 31%),
+    conic-gradient(from 20deg, #2b2f7d, #b257d6, #f6a8de, #5a3fb8, #2b2f7d);
+  box-shadow: 0 0 30px rgba(214, 120, 230, .5);
+}
+.pl-title { font-weight: 600; }
+.pl-sub { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--lilac); }
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 40px 24px 48px; text-align: center;
+  border-top: 1px solid rgba(185, 143, 216, .2);
+  font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+}
+.footer img { width: 190px; margin: -20px auto -22px; }
+.footer p { margin: 6px 0; }
+.footer .small { text-transform: none; letter-spacing: 0; }
+
+/* ---------- Phones and small tablets ---------- */
+@media (max-width: 820px) {
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+  .two-col { grid-template-columns: 1fr; gap: 36px; }
+  .map iframe { height: 340px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .nav { padding: 4px 14px; }
+  .nav-logo img { width: 101px; }
+  .nav nav { gap: 13px; }
+  .nav nav a { font-size: 11px; letter-spacing: .04em; }
+  .nav nav a[href="#playlists"] { display: none; }
+  .nav nav .nav-cta { padding: 6px 12px; }
+  .hero { background-image: url("images/hero-small.jpg"); }
+  .strap span { margin: 0 .3em; }
+  .hero-mid { margin-top: 14vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .playlist { transition: none; }
+}
+
+.nw { white-space: nowrap; }
