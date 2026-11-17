@@ -158,7 +158,21 @@ document.getElementById('year').textContent = new Date().getFullYear();
   function start(v) {
     try { v.currentTime = 0; } catch (e) {}
     var p = v.play();
-    if (p && p.catch) p.catch(function () {}); // if autoplay is blocked, the still image stays
+    if (p && p.catch) p.catch(waitForTap);
+  }
+  // Safari refuses to autoplay video in Low Power Mode (and when its Auto-Play setting is off).
+  // The still image stays, and the video starts the first time the visitor taps, clicks or presses a key.
+  var waiting = false;
+  function waitForTap() {
+    if (waiting) return;
+    waiting = true;
+    var events = ['pointerdown', 'touchend', 'click', 'keydown'];
+    function go() {
+      events.forEach(function (e) { document.removeEventListener(e, go, true); });
+      waiting = false;
+      start(current);
+    }
+    events.forEach(function (e) { document.addEventListener(e, go, true); });
   }
   function check() {
     var v = current;
