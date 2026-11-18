@@ -236,7 +236,10 @@ address strong { color: var(--pink); }
   transition: transform .15s ease, border-color .15s ease;
 }
 .playlist:not(.is-soon):hover { transform: translateY(-3px); border-color: var(--pink); }
-.playlist.is-soon { cursor: default; }
+.playlist.is-soon { cursor: default; opacity: .6; }
+.playlist.is-soon .disc { animation: none; }
+.playlist:not(.is-soon) { border-color: var(--pink); box-shadow: 0 0 34px rgba(214, 120, 230, .35); }
+.playlist:not(.is-soon) .pl-sub { color: var(--pink); }
 .disc {
   width: 84px; height: 84px; margin-bottom: 12px; border-radius: 50%;
   background:
