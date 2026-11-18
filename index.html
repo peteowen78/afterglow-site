@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -48,22 +48,31 @@
   </div>
 </section>
 
+<!-- Scrolling strip: the flyer's strapline -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Dance with joy &bull; No judgement &bull; Wear what you want &bull; Leave feeling lighter &bull;&nbsp;</span>
+    <span>Dance with joy &bull; No judgement &bull; Wear what you want &bull; Leave feeling lighter &bull;&nbsp;</span>
+    <span>Dance with joy &bull; No judgement &bull; Wear what you want &bull; Leave feeling lighter &bull;&nbsp;</span>
+    <span>Dance with joy &bull; No judgement &bull; Wear what you want &bull; Leave feeling lighter &bull;&nbsp;</span>
+  </div>
+</div>
+
 <!-- ABOUT (draft copy, for the client to approve) -->
 <section class="band" id="about">
   <div class="wrap narrow">
-    <p class="eyebrow">About</p>
     <h2>An hour that is just for you</h2>
     <p class="lead">Afterglow is a monthly hour of dancing in the dark for women. Low lights, loud feel-good music and nobody watching.</p>
     <p>It isn't a class and there are no routines to learn. You turn up, the music goes on, and you move however you like. Come straight from work, come after a hard day, come on your own or bring a friend. Wear whatever you feel good in.</p>
     <p>Afterglow was started by Cath Wilkinson, a community nurse from Northwich, who wanted somewhere affordable and welcoming where women of all ages could switch off from everything else for an hour. There is no bar, just water, and a kindness wall where you can leave a few good words for someone else.</p>
-    <p><a href="https://www.northwichguardian.co.uk/news/26677282.northwich-nurse-launches-women-only-afterglow-dance-event/" target="_blank" rel="noopener">Read Cath's story in the Northwich Guardian</a></p>
+    <p><a class="more" href="https://www.northwichguardian.co.uk/news/26677282.northwich-nurse-launches-women-only-afterglow-dance-event/" target="_blank" rel="noopener">Read Cath's story in the Northwich Guardian</a></p>
     <p class="mission">Our mission is simple: you leave feeling lighter than when you arrived.</p>
 
     <ul class="pillars">
-      <li><strong>Women only</strong>A relaxed room with no one to impress.</li>
-      <li><strong>No alcohol</strong>Just water, music and movement.</li>
-      <li><strong>No judgement</strong>Dance how you want. Nobody is watching.</li>
-      <li><strong>One hour</strong>8.30 to 9.30pm, then home glowing.</li>
+      <li><strong>Women only</strong><span>A relaxed room with no one to impress.</span></li>
+      <li><strong>No alcohol</strong><span>Just water, music and movement.</span></li>
+      <li><strong>No judgement</strong><span>Dance how you want. Nobody is watching.</span></li>
+      <li><strong>One hour</strong><span>8.30 to 9.30pm, then home glowing.</span></li>
     </ul>
   </div>
 </section>
@@ -71,7 +80,6 @@
 <!-- TICKETS -->
 <section class="band band-glow" id="tickets">
   <div class="wrap narrow center">
-    <p class="eyebrow">Buy tickets</p>
     <h2>Join us on the dance floor</h2>
     <p class="lead">First Thursday of every month, 8.30&ndash;9.30pm.<br>Tickets are under &pound;10 and are sold through Eventbrite.</p>
     <a class="btn btn-big" href="https://www.eventbrite.co.uk/e/2003088070340?aff=oddtdtcreator" target="_blank" rel="noopener">Get tickets on Eventbrite</a>
@@ -82,7 +90,6 @@
 <!-- GETTING THERE -->
 <section class="band" id="getting-there">
   <div class="wrap">
-    <p class="eyebrow">How to get there</p>
     <h2>Find us</h2>
     <div class="two-col">
       <div>
@@ -110,7 +117,6 @@
 <!-- PLAYLISTS (links to be added) -->
 <section class="band band-glow" id="playlists">
   <div class="wrap center">
-    <p class="eyebrow">Playlists</p>
     <h2>Afterglow at home</h2>
     <p class="lead">Keep the feeling going in the kitchen, the car or the shower.<br>We'll share the playlist from each night here.</p>
     <div class="playlists">
@@ -132,13 +138,30 @@
 </main>
 
 <footer class="footer">
-  <img src="images/logo-plain.png" alt="Afterglow" width="987" height="495">
+  <img src="images/logo-glow.png" alt="Afterglow. Leave feeling lighter." width="1370" height="601" loading="lazy">
   <p>Women only <span>•</span> No alcohol <span>•</span> No judgement</p>
   <p class="small">&copy; <span id="year">2026</span> The Afterglow Project</p>
 </footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Section headings switch on like neon signs the first time they scroll into view.
+(function () {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.remove('unlit');
+      en.target.classList.add('switch-on');
+      io.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -18% 0px' });
+  document.querySelectorAll('main h2').forEach(function (h) {
+    if (h.getBoundingClientRect().top > window.innerHeight * 0.82) h.classList.add('unlit');
+    io.observe(h);
+  });
+})();
 
 // Header video. Two copies of the same clip sit on top of each other and take turns:
 // one second before a copy ends, the other starts from the beginning and they crossfade,
